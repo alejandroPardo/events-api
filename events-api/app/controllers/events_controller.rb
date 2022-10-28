@@ -1,13 +1,30 @@
 class EventsController < ApplicationController
-  def show
+  skip_before_action :verify_authenticity_token
+  def index
+    render json: Event.all
   end
 
-  def new
+  def create
+    event = Event.new(event_params)
+    event.save
+    render json: event
   end
 
-  def edit
+  def update
+    puts params
+    event = Event.find(params[:id])
+    event.update(event_params)
+    event.save!
   end
 
-  def delete
+  def destroy
+    event = Event.find(params[:id])
+    event.destroy!
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:id, :title, :description, :start_date, :end_date)
   end
 end
