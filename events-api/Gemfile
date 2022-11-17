@@ -45,6 +45,9 @@ gem "bootsnap", require: false
 # Formatting tools
 gem 'rubocop', require: false
 
+# CORS
+gem 'rack-cors'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
